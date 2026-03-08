@@ -11,7 +11,7 @@ This repo exists because in 2026 YouTube frequently:
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 # Single video
 python3 yt_transcripts.py "https://youtu.be/2EMoF4gsscI" --langs en
@@ -72,6 +72,22 @@ rm -rf .venv
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+```
+
+## JS runtime requirement (for challenge solving)
+
+If you see an error like:
+- `No supported JavaScript runtime could be found`
+
+install a supported runtime (recommended: `deno`) and retry.
+
+Examples:
+```bash
+# macOS
+brew install deno
+
+# verify
+deno --version
 ```
 
 ## HTTP 429 Too Many Requests
