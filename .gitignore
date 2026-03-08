@@ -1,0 +1,61 @@
+# Transcripts
+transcripts/
+chroma_db/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+# local artifacts
+cookies.txt
+*.vtt
+*.srt
+*.ttml
+tmp_*.txt
+transcript*.txt
+transcripts/
+
+# local artifacts / secrets
+cookies.txt
+*.vtt
+*.srt
+*.ttml
+tmp_*.txt
+transcript*.txt
+transcripts/
