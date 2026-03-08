@@ -25,6 +25,7 @@ wheels/
 *.egg
 
 # Virtual Environment
+.venv/
 venv/
 env/
 ENV/
@@ -42,15 +43,6 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
-# local artifacts
-cookies.txt
-*.vtt
-*.srt
-*.ttml
-tmp_*.txt
-transcript*.txt
-transcripts/
-
 # local artifacts / secrets
 cookies.txt
 *.vtt

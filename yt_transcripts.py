@@ -41,6 +41,17 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import List, Optional
 
+
+def chrome_cookie_db_exists() -> bool:
+    """Best-effort check for Chrome cookies DB on common Linux/macOS paths."""
+    candidates = [
+        Path.home() / ".config/google-chrome/Default/Cookies",              # Linux
+        Path.home() / ".config/google-chrome/Profile 1/Cookies",            # Linux alt
+        Path.home() / "Library/Application Support/Google/Chrome/Default/Cookies",  # macOS
+        Path.home() / "Library/Application Support/Google/Chrome/Profile 1/Cookies", # macOS alt
+    ]
+    return any(p.exists() for p in candidates)
+
 OUTPUT_DIR = Path("transcripts")
 
 
@@ -168,8 +179,11 @@ def main() -> int:
     if args.cookies:
         base_cmd += ["--cookies", args.cookies]
     elif not args.no_browser_cookies:
-        # This frequently helps with availability; may still be rate-limited.
-        base_cmd += ["--cookies-from-browser", "chrome"]
+        # Only add browser cookies if Chrome cookie DB exists; otherwise skip cleanly.
+        if chrome_cookie_db_exists():
+            base_cmd += ["--cookies-from-browser", "chrome"]
+        else:
+            print("ℹ️  Chrome cookies DB not found on this machine; proceeding without --cookies-from-browser")
 
     cmd = base_cmd + [args.url]
 

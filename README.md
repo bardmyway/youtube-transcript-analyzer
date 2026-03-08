@@ -52,7 +52,27 @@ If the video is age/region/login gated or you keep seeing missing formats, expor
 python3 yt_transcripts.py "<url>" --cookies cookies.txt
 ```
 
-If you don’t provide `--cookies`, the script attempts `--cookies-from-browser chrome` (can be disabled with `--no-browser-cookies`).
+If you don’t provide `--cookies`, the script attempts `--cookies-from-browser chrome` **only when Chrome cookie DB exists**; otherwise it skips browser cookies cleanly (can also be forced off with `--no-browser-cookies`).
+
+## Local vs VM behavior (important)
+
+- **Local machine (recommended):** best success rate due to real browser cookies + residential IP.
+- **Cloud VM/datacenter:** may fail on some videos due to YouTube anti-bot/IP gating even with EJS.
+
+If VM shows Chrome cookie errors, that machine likely has no Chrome profile/cookie DB. This is now auto-detected and skipped by the script.
+
+## If your venv is broken after moving folders (macOS common)
+
+Symptom:
+- `pip: bad interpreter .../.venv/bin/python: no such file or directory`
+
+Fix:
+```bash
+rm -rf .venv
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
 
 ## HTTP 429 Too Many Requests
 
